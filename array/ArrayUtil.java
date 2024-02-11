@@ -36,6 +36,17 @@ public class ArrayUtil {
     int[] myarray = { 0, 0, 3, 0, 2, 8, 5 };
     movezerostotheendofarray(myarray);
     printArray(myarray);
+
+
+    System.out.print("\n+++++++++++++++++++++ resizing an array +++++++++++++++++++");
+    System.out.println(" ");
+
+    int[] arraytoberesized = { 1, 2, 3, 4 };
+    System.out.println(arraytoberesized.length);
+    int[] newarr = resizinganarray(arraytoberesized, 8);
+    printArray(arraytoberesized);
+    System.out.println(newarr.length);
+
     
   }
 
@@ -120,7 +131,7 @@ public class ArrayUtil {
   }
 
   public static int[] movezerostotheendofarray(int[] arr) {
-    int j= 0; // focus on the zeroth elements
+    int j = 0; // focus on the zeroth elements
     for (int i = 0; i < arr.length; i++) {
       if (arr[j] == 0 && arr[i] != 0) {
         int temp = arr[i];
@@ -131,6 +142,16 @@ public class ArrayUtil {
         j++;
       }
     }
-    return arr;  
+    return arr;
+  }
+  
+  public static int[] resizinganarray(int[] arr, int size) {
+    int[] newarr = new int[size];
+    for (int i = 0; i < arr.length; i++) {
+      newarr[i] = arr[i];
+    }
+    arr = newarr;
+
+    return newarr;
   }
 }
