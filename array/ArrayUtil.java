@@ -96,4 +96,33 @@ public class ArrayUtil {
     System.out.println(min);
     return min;
   }
+
+
+
+  public static int returnsecondmaximuminarray(int[] arr) {
+    int maxvalue = Integer.MIN_VALUE;
+    int secondmaxvalue = Integer.MIN_VALUE;
+    for (int i = 0; i < arr.length; i++) {
+      if (arr[i] > maxvalue) {
+        secondmaxvalue = maxvalue;
+        maxvalue = arr[i];
+      } else if (arr[i] > secondmaxvalue && arr[i] != maxvalue) {
+        secondmaxvalue = arr[i];
+      }
+    }
+    return secondmaxvalue;
+  }
+
+  public static int[] movezerostotheendofarray(int[] arr) {
+    int nextpostnidx= 0;
+    for (int i = 0; i < arr.length; i++) {
+      if (arr[nextpostnidx] == 0 && arr[i] != 0) {
+        int temp = arr[i];
+        arr[i] = arr[nextpostnidx];
+        arr[nextpostnidx] = temp;
+      }
+    }
+    return arr;
+      
+  }
 }
