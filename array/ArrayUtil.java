@@ -30,6 +30,12 @@ public class ArrayUtil {
     System.out.println(" ");
 
     minimumnumberinarray(mixedarray);
+
+    System.out.print("\n+++++++++++++++++++++ move zeros to the end of an array +++++++++++++++++++");
+    System.out.println(" ");
+    int[] myarray = { 0, 0, 3, 0, 2, 8, 5 };
+    movezerostotheendofarray(myarray);
+    printArray(myarray);
     
   }
 
@@ -114,12 +120,15 @@ public class ArrayUtil {
   }
 
   public static int[] movezerostotheendofarray(int[] arr) {
-    int nextpostnidx= 0;
+    int j= 0; // focus on the zeroth elements
     for (int i = 0; i < arr.length; i++) {
-      if (arr[nextpostnidx] == 0 && arr[i] != 0) {
+      if (arr[j] == 0 && arr[i] != 0) {
         int temp = arr[i];
-        arr[i] = arr[nextpostnidx];
-        arr[nextpostnidx] = temp;
+        arr[i] = arr[j];
+        arr[j] = temp;
+      }
+      if (arr[j] != 0) {
+        j++;
       }
     }
     return arr;
