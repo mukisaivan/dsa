@@ -3,8 +3,7 @@ public class ArrayUtil {
 
   public static void main(String[] args) {
 
-    int[] mixedarray = {3, 2, 4, 7, 10, 6, 5};
-
+    int[] mixedarray = { 3, 2, 4, 7, 10, 6, 5 };
 
     System.out.println("\n+++++++++++++++++++++ mixed array below +++++++++++++++++++");
 
@@ -37,7 +36,6 @@ public class ArrayUtil {
     movezerostotheendofarray(myarray);
     printArray(myarray);
 
-
     System.out.print("\n+++++++++++++++++++++ resizing an array +++++++++++++++++++");
     System.out.println(" ");
 
@@ -47,9 +45,9 @@ public class ArrayUtil {
     printArray(arraytoberesized);
     System.out.println(newarr.length);
 
-    
   }
 
+  
   public static void printArray(int[] arr) {
     for (int i = 0; i < arr.length; i++) {
       System.out.print(arr[i] + " ");
@@ -58,7 +56,6 @@ public class ArrayUtil {
   }
 
   
-
   public static int[] removingEvenNumbers(int[] arr) {
     int oddCount = 0;
     for (int i = 0; i < arr.length; i++) {
@@ -94,7 +91,7 @@ public class ArrayUtil {
   }
   
 
-  int MaximumNumberInAnArray(int[] array) {
+  public static int MaximumNumberInAnArray(int[] array) {
     int max = array[0];
     for (int i = 1; i < array.length; i++) {
       if (array[i] > max)
@@ -103,6 +100,7 @@ public class ArrayUtil {
     return max;
   }
   
+
   public static int minimumnumberinarray(int[] arr) {
     int min = arr[0];
     for (int i = 0; i < arr.length; i++) {
@@ -113,7 +111,6 @@ public class ArrayUtil {
     System.out.println(min);
     return min;
   }
-
 
 
   public static int returnsecondmaximuminarray(int[] arr) {
@@ -130,6 +127,7 @@ public class ArrayUtil {
     return secondmaxvalue;
   }
 
+
   public static int[] movezerostotheendofarray(int[] arr) {
     int j = 0; // focus on the zeroth elements
     for (int i = 0; i < arr.length; i++) {
@@ -145,6 +143,7 @@ public class ArrayUtil {
     return arr;
   }
   
+
   public static int[] resizinganarray(int[] arr, int size) {
     int[] newarr = new int[size];
     for (int i = 0; i < arr.length; i++) {
@@ -154,4 +153,30 @@ public class ArrayUtil {
 
     return newarr;
   }
+
+  //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ coding interview question ++++++++++++++++ 
+  public static int findingthemissingnumber(int[] arr) {
+    int n = arr.length + 1; // 1 is added because one number is expected to be missing form the provided array
+    int sum = n * (n + 1) / 2;
+    for (int i = 0; i < arr.length; i++) {
+      sum -= arr[i];
+    }
+    return sum;
+  }
+  
+
+  public static boolean checkwhetherastringisPalindrome(String word) { // Strings like madam read similar from back and front
+    char[] charArray =  word.toCharArray();
+    int start = 0;
+    int end = charArray.length - 1;
+    while (start < end) {
+      if (charArray[start] != charArray[end]) {
+        return false;
+      }
+      start++;
+      end--;
+    }
+    return true;
+  }
+
 }
