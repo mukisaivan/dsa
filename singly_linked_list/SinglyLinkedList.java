@@ -1,6 +1,19 @@
 package singly_linked_list;
 
 public class SinglyLinkedList {
+  ListNode head;
+
+  private static class ListNode {
+    int data;
+    ListNode next;
+
+    public ListNode(int data) {
+      this.data = data;
+      this.next = null; 
+    }
+
+
+  }
   
 }
 
