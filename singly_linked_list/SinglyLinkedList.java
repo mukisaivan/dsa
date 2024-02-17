@@ -1,28 +1,35 @@
 package singly_linked_list;
 
 public class SinglyLinkedList {
-  ListNode head;
 
+  public static void main(String[] args) {
+
+    Listnoder listnoder = new Listnoder(null);
+    
+  }
+
+
+  private ListNode head;
   private static class ListNode {
-    int data;
-    ListNode next;
+    private int data;
+    private ListNode next;
 
     public ListNode(int data) {
       this.data = data;
-      this.next = null; 
+      this.next = null;
     }
-
-
   }
+
+ 
   
 }
 
 
-class Listnode<T> {
+class Listnoder<T> {
   T data;
-  Listnode<T> next;
+  Listnoder<T> next;
 
-  public Listnode(T x) {
+  public Listnoder(T x) {
     this.data = x;
     this.next = null;
   }
