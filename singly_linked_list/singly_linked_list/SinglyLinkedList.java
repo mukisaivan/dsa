@@ -17,7 +17,7 @@ public class SinglyLinkedList {
     public ListNode(int data) {
       this.data = data;
       this.next = null;
-    }
+    } 
   }
 
  
