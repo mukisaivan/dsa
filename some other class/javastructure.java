@@ -5,6 +5,7 @@ public class javastructure {
 
   public static void main(String[] args) {
     // int[] result = removingEvenNumbers(new int[] { 2, 3, 4, 5, 6 });
+
     int[] result = remvevn(new int[] { 2, 3, 4, 5, 6 });
     System.out.println("Result array: " + Arrays.toString(result));
   }
@@ -37,7 +38,6 @@ public class javastructure {
   }
 
   public static int[] remvevn(int[] arr) {
-    int[] newarr = new int[] {};
     int oddcount = 0;
     int idx = 0;
     for (int i = 0; i < arr.length; i++) {
