@@ -28,6 +28,7 @@ public class javadsa {
     static DoublyListNode dhead;
     static DoublyListNode tail;
     int length = 0;
+    ListNode csllLast;
 
     public static void main(String[] args) {
 
@@ -177,6 +178,7 @@ public class javadsa {
          */
 
         /*
+         * javadsa list1 = new javadsa();
          * list1.insertLastInDoubly(3);
          * list1.insertLastInDoubly(4);
          * list1.insertLastInDoubly(5);
@@ -187,19 +189,50 @@ public class javadsa {
          * 
          */
 
+        /*
+         * javadsa list1 = new javadsa();
+         * list1.insertLastInDoubly(3);
+         * list1.insertLastInDoubly(4);
+         * list1.insertLastInDoubly(5);
+         * list1.insertLastInDoubly(6);
+         * 
+         * list1.doublyLinkedListFromFront(dhead);
+         * 
+         * list1.deleteFirstNodeinDoubly();
+         * list1.deleteLastNodeinDoubly();
+         * 
+         * list1.doublyLinkedListFromFront(dhead);
+         */
+
+        /*
+         * javadsa list1 = new javadsa();
+         * list1.createCircularSinglyLinkedList();
+         * list1.displayingCircularSinglyLL();
+         * // list1.insertAtBeginningOfCircular(66);
+         * // list1.insertAtEndOfCircular(44);
+         * list1.deleteFirstNodeinCircularSinglyLinkedList();
+         * System.out.println("\n");
+         * list1.displayingCircularSinglyLL();
+         */
+
         javadsa list1 = new javadsa();
 
-        list1.insertLastInDoubly(3);
-        list1.insertLastInDoubly(4);
-        list1.insertLastInDoubly(5);
-        list1.insertLastInDoubly(6);
+        ListNode head = new ListNode(1);
+        ListNode sec = new ListNode(2);
+        ListNode third = new ListNode(3);
+        ListNode four = new ListNode(4);
 
-        list1.doublyLinkedListFromFront(dhead);
+        head.next = sec;
+        sec.next = third;
+        third.next = four;
+        four.next = head;
 
-        list1.deleteFirstNodeinDoubly();
-        list1.deleteLastNodeinDoubly();
+        ListNode laListNode = four;
 
-        list1.doublyLinkedListFromFront(dhead);
+        list1.displayCircularLL(head, laListNode);
+        ListNode result = list1.deleteLastNodeinCircularSinglyLinkedList(head, laListNode);
+
+        list1.displayCircularLL(head, result);
 
     }
 
@@ -806,7 +839,100 @@ public class javadsa {
     // ---------------------------------------------------------------
 
     void createCircularSinglyLinkedList() {
+        ListNode first = new ListNode(1);
+        ListNode second = new ListNode(2);
+        ListNode third = new ListNode(3);
+        ListNode fourth = new ListNode(4);
+
+        first.next = second;
+        second.next = third;
+        third.next = fourth;
+        fourth.next = first;
+
+        csllLast = fourth;
 
     }
 
+    void displayingCircularSinglyLL() {
+
+        if (csllLast == null) {
+            return;
+        }
+
+        ListNode first = csllLast.next;
+        while (first != csllLast) {
+            System.out.print(first.data + " --> ");
+            first = first.next;
+        }
+        System.out.print(first.data + "");
+    }
+
+    void insertAtBeginningOfCircular(int data) {
+        ListNode newListNode = new ListNode(data);
+
+        if (csllLast == null) {
+            csllLast = newListNode;
+        }
+        ListNode temp = csllLast.next;
+        csllLast.next = newListNode;
+        newListNode.next = temp;
+    }
+
+    void insertAtEndOfCircular(int data) {
+        ListNode newListNode = new ListNode(data);
+
+        if (csllLast == null) {
+            csllLast = newListNode;
+            csllLast.next = csllLast;
+        }
+
+        ListNode temp = csllLast.next;
+        csllLast.next = newListNode;
+        newListNode.next = temp;
+        csllLast = newListNode;
+    }
+
+    void deleteFirstNodeinCircularSinglyLinkedList() {
+
+        if (csllLast.next == csllLast) {
+            csllLast = null;
+            throw new NoSuchElementException("\nlist is empty");
+        }
+
+        ListNode originalfirst = csllLast.next;
+        ListNode originalsec = originalfirst.next;
+
+        csllLast.next = originalsec;
+        originalfirst.next = null;
+
+    }
+
+    ListNode deleteLastNodeinCircularSinglyLinkedList(ListNode head, ListNode laListNode) {
+        ListNode firstnode = laListNode.next;
+
+        ListNode temp = head;
+        while (temp.next.next != firstnode) {
+            temp = temp.next;
+        }
+        temp.next = firstnode;
+        laListNode = temp;
+
+        return temp;
+    }
+
+    void displayCircularLL(ListNode head, ListNode laListNode) {
+
+        System.out.println("\n");
+        if (laListNode == null) {
+            return;
+        }
+
+        ListNode currentNode = laListNode.next;
+        while (currentNode != laListNode) {
+            System.out.print(currentNode.data + " --> ");
+            currentNode = currentNode.next;
+        }
+        System.out.print(currentNode.data + " ");
+
+    }
 }
