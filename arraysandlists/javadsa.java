@@ -667,9 +667,7 @@ public class javadsa {
         if (b == null) {
             tail.next = a;
         }
-
         return tail.next;
-
     }
 
     ListNode reverselist(ListNode head) {
