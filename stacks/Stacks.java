@@ -10,7 +10,7 @@ import java.util.Stack;
  *
  * @author IVAN
  */
-public class AfterLinksAndArrays {
+public class Stacks {
 
   public class ListNode {
     public int data;
@@ -78,7 +78,7 @@ public class AfterLinksAndArrays {
   private int length;
 
   public static void main(String[] args) {
-    AfterLinksAndArrays inst = new AfterLinksAndArrays();
+    Stacks inst = new Stacks();
     /*
      * Pushing using Linked Lists
      * inst.pushToStack(3);
@@ -107,8 +107,12 @@ public class AfterLinksAndArrays {
      * System.out.println(inst.mergeStrings(str1, str2));
      */
 
-    ArrayStack stack = new ArrayStack(4);
-    System.out.println(stack.reverseStringUsingStack("reverseme"));
+    /*
+     * ArrayStack stack = new ArrayStack(4);
+     * System.out.println(stack.reverseStringUsingStack("reverseme"));
+     */
+
+    int[] solution = inst.nextGreaterElementInArrayUsingStack(new int[] { 4, 7, 3, 4, 8, 1 });
 
   }
 
@@ -161,6 +165,82 @@ public class AfterLinksAndArrays {
       i++;
     }
     return result;
+  }
+
+  // some leet code problems APPLICATIONS OF STACKS
+
+  /*
+   * Question
+   * Given an array of intgers. For each element in the array, find its next
+   * greater element in that array. the next grater element is the first element
+   * towards right, which is greater than the current element
+   * 
+   * example intput = [4, 7, 3, 4, 8, 1]
+   * output = [7, 8, 4, 8, -1, -1]
+   * 
+   */
+
+  int[] nextGreaterElementInArrayUsingStack(int[] arr) {
+
+    int[] resultArray = new int[arr.length];
+    Stack<Integer> stack = new Stack<>();
+
+    for (int i = arr.length - 1; i >= 0; i--) {
+      if (!stack.empty()) {
+        while (!stack.empty() && stack.peek() <= arr[i]) {
+          stack.pop();
+        }
+      }
+      if (stack.empty()) {
+        resultArray[i] = -1;
+      } else {
+        resultArray[i] = stack.peek();
+      }
+      stack.push(arr[i]);
+    }
+    System.out.print("[ ");
+    for (Integer integer : resultArray) {
+      System.out.print(" " + integer + ", ");
+    }
+    System.out.print(" ]");
+
+    return resultArray;
+  }
+
+  /*
+   * QUESTION
+   * 
+   * Given a string s containing just the haracters '(', ')', '[' ,']'{', and '}',
+   * determin eif the input string is valid.
+   * An input string is valis if: Open brackets must be closed by the ssame type
+   * of brackets and the open brackets must be closed in the correct order
+   * 
+   */
+
+  boolean isValidParenthesis(String s) {
+
+    char[] charstring = s.toCharArray();
+    Stack<Character> stack = new Stack<Character>();
+
+    for (char c : charstring) {
+      if (c == '{' || c == '(' || c == '[') {
+        stack.push(c);
+      } else {
+        if (stack.empty()) {
+          return false;
+
+        } else {
+          char top = stack.peek();
+          if (c == ')' && top == '(' || c == '}' && top == '{' || c == ']' && top == '[') {
+            stack.pop();
+          } else {
+            return false;
+          }
+        }
+      }
+    }
+
+    return stack.empty();
   }
 
 }
