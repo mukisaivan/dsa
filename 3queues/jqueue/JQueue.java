@@ -18,24 +18,6 @@ public class JQueue {
     }
   }
 
-  public static void main(String[] args) {
-
-    JQueue inst = new JQueue();
-    /*
-     * inst.enqueue(1);
-     * inst.enqueue(2);
-     * inst.enqueue(3);
-     * inst.displayQueue();
-     * inst.dequeue();
-     * inst.dequeue();
-     * inst.displayQueue();
-     */
-
-    String[] binaryNumbers = inst.generateBinaryNumbers(4);
-    inst.displayBinaryNumbers(binaryNumbers);
-
-  }
-
   int length() {
     return length;
   }
@@ -114,6 +96,24 @@ public class JQueue {
     for (String arr1 : arr) {
       System.out.print(arr1 + ",");
     }
+  }
+
+  public static void main(String[] args) {
+
+    JQueue inst = new JQueue();
+    /*
+     * inst.enqueue(1);
+     * inst.enqueue(2);
+     * inst.enqueue(3);
+     * inst.displayQueue();
+     * inst.dequeue();
+     * inst.dequeue();
+     * inst.displayQueue();
+     */
+
+    String[] binaryNumbers = inst.generateBinaryNumbers(4);
+    inst.displayBinaryNumbers(binaryNumbers);
+
   }
 
 }

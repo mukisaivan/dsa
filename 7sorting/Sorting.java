@@ -233,18 +233,20 @@ public class Sorting {
 
     for (int i = 0; i < arr.length; i++) {
       if (i % 2 == 0) { // even index (largest)
-        arr[i] = arr[i] + (arr[maxIdx] % max * max);
+        arr[i] = arr[i] + (arr[maxIdx] % max) * max;
         maxIdx--;
 
       } else { // odd index (smallest)
-        arr[i] = arr[i] + (arr[minIdx] % max * max);
+        arr[i] = arr[i] + (arr[minIdx] % max) * max;
         minIdx++;
       }
     }
 
     for (int i = 0; i < arr.length; i++) {
-      arr[i] = arr[i] / 10;
+      arr[i] = arr[i] / max;
     }
+
+    System.out.println(Arrays.toString(arr));
 
   }
 
@@ -252,6 +254,7 @@ public class Sorting {
     Sorting s = new Sorting();
 
     int[] arr = new int[] { 1, 3, 5, 2, 6, 4 };
+    int[] sorted_arr = new int[] { 2, 3, 5, 6, 8, 9 };
 
     // s.printArray(arr);
     // s.selectionSort(arr);
@@ -265,7 +268,7 @@ public class Sorting {
 
     // s.dutchFlagProblem(new int[] { 2, 2, 0, 0, 1, 1, 0, 0, 2, 2 });
 
-    s.rearrange_sorted_array_in_min_max_form(arr);
+    s.rearrange_sorted_array_in_min_max_form(sorted_arr);
 
   }
 
