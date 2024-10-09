@@ -175,14 +175,11 @@ public class Graphs {
           }
         }
       }
-
     }
 
-    public void recursive_dfs() {
+    public void recursive_dfs() { // used when some of the nodes have no connecting edges (independent)
       boolean[] visited = new boolean[V];
-
       for (int v = 0; v < V; v++) {
-
         if (!visited[v]) {
           dfsUtil(visited, v);
         }
@@ -198,8 +195,70 @@ public class Graphs {
           dfsUtil(visited, i);
         }
       }
+    }
+
+    void connected_components_undirected_graphs() {
+      // using recursive dfs algo
+
+      boolean[] visited = new boolean[V];
+      int count = 0;
+      int[] componentId = new int[V];
+      for (int v = 0; v < V; v++) {
+        if (!visited[v]) {
+          connect_components_recursive_dfs(visited, v, count, componentId);
+          count++;
+        }
+      }
 
     }
+
+    void connect_components_recursive_dfs(boolean[] visited, int v, int count, int[] componentId) {
+      visited[v] = true;
+      componentId[v] = count;
+      for (int i : adjList[v]) {
+        if (!visited[i]) {
+          connect_components_recursive_dfs(visited, i, count, componentId);
+        }
+      }
+    }
+
+    int number_of_islands(char[][] grid) {
+      int m = grid.length; // to traverse rows
+      int n = grid[0].length; // to traverse columns
+
+      boolean[][] visited = new boolean[m][n];
+
+      int numOfIslands = 0;
+
+      for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
+          if (!visited[i][j] && grid[i][j] == '1') {
+            dfs_4_number_of_islands(grid, i, j, visited);
+            numOfIslands++;
+          }
+        }
+      }
+
+      return numOfIslands;
+    }
+
+    void dfs_4_number_of_islands(char[][] grid, int row, int column, boolean[][] visited) {
+      if (visited[row][column] ||
+          grid[row][column] == '0' ||
+          row < 0 || column < 0 ||
+          row >= grid.length || column >= grid[0].length) {
+        return;
+      }
+
+      visited[row][column] = true;
+
+      dfs_4_number_of_islands(grid, row - 1, column, visited); // go up
+      dfs_4_number_of_islands(grid, row, column + 1, visited); // go right
+      dfs_4_number_of_islands(grid, row + 1, column, visited); // go down
+      dfs_4_number_of_islands(grid, row, column - 1, visited); // go left
+
+    }
+
   }
 
   public static class Graph_Representation_Using_Edge_List {
