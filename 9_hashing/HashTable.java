@@ -118,14 +118,14 @@ public class HashTable {
     return head.value;
   }
 
-  /*
-   * QUESTION: Contains duplicate
-   * 
-   * given an array of nums, return true is any value appears atleast twice in an
-   * array, and return false if the array element is distinct
+  /*-
+      QUESTION: Contains duplicate
+      
+      given an array of nums, return true is any value appears atleast twice in an
+      array, and return false if the array element is distinct
    */
 
-  boolean contains_duplicate(int[] nums) {
+  public boolean contains_duplicate(int[] nums) {
     Set<Integer> set = new HashSet<>();
     for (int i = 0; i < nums.length; i++) {
       if (set.contains(nums[i])) {
@@ -134,10 +134,6 @@ public class HashTable {
       set.add(nums[i]);
     }
     return false;
-  }
-
-  void overlapping_intervals() {
-
   }
 
   public static void main(String[] args) {
