@@ -245,6 +245,18 @@ public class Probs_Solutions {
 
   }
 
+  public void slidingWindowMaximumProblem() {
+    /*-
+    QN: given an array of integers arr, there is a sliding window of size k which is moving from the very left to the right of an array.You can only see l numbers in the window. Each time teh sliddding window moves right by one position. return the max sliding window.
+    
+    example: 
+    Input: arr = {44, 77, 33, 44, 88, 11}, k = 3
+    Output: arr = [77, 77, 88, 88]
+    
+     */
+
+  }
+
   public static void main(String[] args) {
     Probs_Solutions ps = new Probs_Solutions();
     ps.subSequenceProblem("abcde", "ace");
