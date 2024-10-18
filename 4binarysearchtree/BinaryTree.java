@@ -33,7 +33,7 @@ public class BinaryTree {
     }
   }
 
-  void createBinaryTree() {
+  public void createBinaryTree() {
     TreeNode first = new TreeNode(1);
     TreeNode second = new TreeNode(2);
     TreeNode third = new TreeNode(3);
@@ -51,7 +51,7 @@ public class BinaryTree {
 
   // Pre-order traversal (root, left, right) // Best for serializing or copying a
   // tree
-  void recursivePreOrderTraversal(TreeNode node) {
+  public void recursivePreOrderTraversal(TreeNode node) {
     if (node == null) { // base case
       return;
     }
@@ -65,7 +65,7 @@ public class BinaryTree {
 
   // In-order traversal (left, root, right) // Best for BSTs where you need sorted
   // data.
-  void recursiveInOrderTraversal(TreeNode node) {
+  public void recursiveInOrderTraversal(TreeNode node) {
     if (node == null) { // base case
       return;
     }
@@ -79,7 +79,7 @@ public class BinaryTree {
 
   // Post-order traversal (left, right, root) // Best for deleting or evaluating
   // expression trees.
-  void recursivePostOrderTraversal(TreeNode node) {
+  public void recursivePostOrderTraversal(TreeNode node) {
     if (node == null) { // base case
       return;
     }
@@ -93,7 +93,7 @@ public class BinaryTree {
 
   // Level-order traversal (by level from top to bottom) Best for hierarchical
   // visualization or shortest path algorithms.
-  void levelOrderTraversal(TreeNode root) {
+  public void levelOrderTraversal(TreeNode root) {
     if (root == null) { // base case
       return;
     }
@@ -120,7 +120,7 @@ public class BinaryTree {
     }
   }
 
-  void iterativePreOrderTraversalofBinaryTree(TreeNode node) { // using a stack
+  public void iterativePreOrderTraversalofBinaryTree(TreeNode node) { // using a stack
     Stack<TreeNode> stack = new Stack<>();
     stack.push(node);
     while (!stack.empty()) {
@@ -137,7 +137,7 @@ public class BinaryTree {
     }
   }
 
-  void iterativeInOrderTraversalofBinaryTree(TreeNode node) {
+  public void iterativeInOrderTraversalofBinaryTree(TreeNode node) {
     if (root == null) {
       return;
     }
@@ -155,7 +155,7 @@ public class BinaryTree {
     }
   }
 
-  void iterativePostOrderTraversalofBinaryTree(TreeNode rootNode) {
+  public void iterativePostOrderTraversalofBinaryTree(TreeNode rootNode) {
     TreeNode current = rootNode;
 
     Stack<TreeNode> stack = new Stack<>();
@@ -181,7 +181,7 @@ public class BinaryTree {
 
   // FIND THE MAXIMUM VALUE IN A BINARY SEARCH TREE
 
-  int findMax(TreeNode root) {
+  public int findMax(TreeNode root) {
     if (root == null) {
       return Integer.MIN_VALUE;
     }
@@ -215,11 +215,11 @@ public class BinaryTree {
     return root;
   }
 
-  void insert(int value) {
+  public void insert(int value) {
     bstRoot = insertingNodeInBinarySearchTree(bstRoot, value);
   }
 
-  BsTreeNode searchforKeyinBinaryTree(BsTreeNode root, int key) {
+  public BsTreeNode searchforKeyinBinaryTree(BsTreeNode root, int key) {
     if (root == null || root.data == key) {
       return root;
     }
@@ -232,7 +232,7 @@ public class BinaryTree {
 
   }
 
-  boolean checkingValidityOfBsTree(BsTreeNode root, int min, int max) {
+  public boolean checkingValidityOfBsTree(BsTreeNode root, int min, int max) {
     // { -min, +max}
 
     // the left side dont exceed above the root value and therefore have the same

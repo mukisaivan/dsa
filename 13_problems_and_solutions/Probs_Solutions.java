@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.Stack;
 
@@ -344,8 +345,74 @@ public class Probs_Solutions {
 
   }
 
-  public void longestSubStringWithoutRepeatingCharacters() {
+  public int longestSubStringWithoutRepeatingCharacters(String s) {
 
+    /*-
+    
+      Given a string, find the length of the longest substring without repeating characters
+      
+      example-
+      input: str = "abcabcbb"
+      output: 3
+      
+      input: str = "pwwkew"
+      output: 3
+     */
+
+    int end = 0;
+    int start = 0;
+    int maxLength = 0;
+
+    Map<Character, Integer> map = new HashMap<>();
+    for (int i = 0; i < s.length(); i++) {
+      Character rightChar = s.charAt(end);
+      if (map.containsKey(rightChar)) {
+        start = Math.max(start, map.get(rightChar) + 1);
+      }
+
+      map.put(rightChar, end);
+      maxLength = Math.max(maxLength, end - start + 1);
+    }
+    return maxLength;
+  }
+
+  public class TreeNode {
+    int val;
+    TreeNode right;
+    TreeNode left;
+
+    public TreeNode(int val) {
+      this.val = val;
+      this.right = null;
+      this.left = null;
+    }
+  }
+
+  public Boolean symmetricTreeProblem(TreeNode root) {
+    /*-
+     Given the root of a binary tree, check whether it is a mirror of itself
+     (i.e., symmetric around its center)
+     */
+
+    Stack<TreeNode> stack = new Stack<>();
+    stack.push(root.right);
+    stack.push(root.left);
+    while (!stack.isEmpty()) {
+      TreeNode n1 = stack.pop(); // left
+      TreeNode n2 = stack.pop(); // right
+      if (n1 == null && n2 == null) {
+        continue;
+      }
+      if (n1 == null || n2 == null || n1.val != n2.val) {
+        return false;
+      }
+      stack.push(n1.left);
+      stack.push(n2.right);
+
+      stack.push(n1.right);
+      stack.push(n2.left);
+    }
+    return true;
   }
 
   public static void main(String[] args) {
