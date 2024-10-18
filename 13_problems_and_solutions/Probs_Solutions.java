@@ -1,7 +1,10 @@
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Set;
+import java.util.Stack;
 
 public class Probs_Solutions {
 
@@ -245,15 +248,103 @@ public class Probs_Solutions {
 
   }
 
-  public void slidingWindowMaximumProblem() {
+  public List<Integer> slidingWindowMaximumProblem(int[] arr, int k) {
     /*-
-    QN: given an array of integers arr, there is a sliding window of size k which is moving from the very left to the right of an array.You can only see l numbers in the window. Each time teh sliddding window moves right by one position. return the max sliding window.
+      QN: given an array of integers arr, there is a sliding window of size k which is moving from the very left to the right of an array.You can only see l numbers in the window. Each time teh sliddding window moves right by one position. return the max sliding window.
+      
+      example: 
+      Input: arr = {44, 77, 33, 44, 88, 11}, k = 3
+      Output: arr = [77, 77, 88, 88]
+    */
+
+    int[] ngeArr = nextGreaterElements(arr);
+
+    List<Integer> result = new ArrayList<>();
+
+    for (int i = 0; i <= arr.length - k; i++) { // i is controlling the sliding window
+      int j = i; // j is controlling the iteration of the arr
+      /*-
+        [ 44, 77, 33, 44, 88, 11 ]  --> arr
+        [ 0,  1,  2,  3,  4,  5 ]  --> indexes
+        [ 1,  4,  3,  4,  6,  6 ]   --> ngeArr
+      */
+      while (ngeArr[j] < i + k) {
+        j = ngeArr[j];
+      }
+      result.add(arr[j]);
+    }
+
+    System.out.println(result);
+
+    return result;
+  }
+
+  public int[] nextGreaterElements(int[] arr) {
+    int[] result = new int[arr.length];
+    Stack<Integer> stack = new Stack<>();
+    for (int i = arr.length - 1; i >= 0; i--) { // start from the last index
+      if (!stack.isEmpty()) {
+        while (!stack.isEmpty() && arr[stack.peek()] <= arr[i]) {
+          stack.pop(); // only pop from the stack if you find an element "arr[i]" greater than the one
+                       // on top of the stack arr[stack.peekk]
+        }
+      }
+      if (stack.isEmpty()) {
+        result[i] = arr.length; // inserting for last item as thts where we started from
+      } else {
+        result[i] = stack.peek(); // only push to the result array if stack isnt empty and the current array item
+                                  // "arr[i]" is greater than the one which was in the stack "arr[stack.peek]"
+      }
+      stack.push(i); // for each index push it to the stack for evaluation
+    }
+    return result; // [1, 4, 3, 4, 6, 6]
+  }
+
+  /*-
+    Given an array of integers arr, there is a sliding window of size k which is moving from the very left to the very right.find the maximum sum of any contigous subarray of size k
     
     example: 
-    Input: arr = {44, 77, 33, 44, 88, 11}, k = 3
-    Output: arr = [77, 77, 88, 88]
-    
-     */
+      input: arr = {2, 7, 3, 5, 8, 1} k = 3
+      output: arr = 16
+  */
+
+  public void maximumSumSubArray_Onxk(int[] arr, int k) {
+    int n = arr.length;
+    int maxSum = Integer.MIN_VALUE;
+    // Traverse the array with a sliding window of size k
+    for (int i = 0; i <= n - k; i++) {
+      int currentSum = 0;
+      // Calculate the sum of the current window
+      for (int j = i; j < i + k; j++) {
+        currentSum += arr[j];
+      }
+      // Update maxSum if we found a new maximum
+      if (currentSum > maxSum) {
+        maxSum = currentSum;
+      }
+    }
+    System.out.println("Maximum sum of subarray of size " + k + " is: " + maxSum);
+  }
+
+  public int maximumSumSubArray_0n(int[] arr, int k) {
+
+    int windowSum = 0;
+    int maxSum = 0;
+    int start = 0;
+
+    for (int end = 0; end < arr.length; end++) {
+      windowSum = windowSum + arr[end];
+      if (end >= k - 1) {
+        maxSum = Math.max(windowSum, maxSum);
+        windowSum = windowSum - arr[start];
+        start++;
+      }
+    }
+    return maxSum;
+
+  }
+
+  public void longestSubStringWithoutRepeatingCharacters() {
 
   }
 
@@ -266,6 +357,8 @@ public class Probs_Solutions {
     ps.removeVowels("whats your name");
 
     ps.reverseAnInteger(-1234);
+
+    ps.slidingWindowMaximumProblem(new int[] { 44, 77, 33, 44, 88, 11 }, 3);
 
   }
 
